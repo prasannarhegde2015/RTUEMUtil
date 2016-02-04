@@ -47,35 +47,35 @@
             // 
             // txtdesc
             // 
-            this.txtdesc.Location = new System.Drawing.Point(126, 23);
+            this.txtdesc.Location = new System.Drawing.Point(137, 12);
             this.txtdesc.Name = "txtdesc";
             this.txtdesc.Size = new System.Drawing.Size(100, 20);
             this.txtdesc.TabIndex = 0;
             // 
             // txtadd
             // 
-            this.txtadd.Location = new System.Drawing.Point(126, 61);
+            this.txtadd.Location = new System.Drawing.Point(137, 47);
             this.txtadd.Name = "txtadd";
             this.txtadd.Size = new System.Drawing.Size(100, 20);
             this.txtadd.TabIndex = 1;
             // 
             // txtval
             // 
-            this.txtval.Location = new System.Drawing.Point(126, 124);
+            this.txtval.Location = new System.Drawing.Point(137, 124);
             this.txtval.Name = "txtval";
             this.txtval.Size = new System.Drawing.Size(100, 20);
             this.txtval.TabIndex = 2;
             // 
             // txtmin
             // 
-            this.txtmin.Location = new System.Drawing.Point(126, 172);
+            this.txtmin.Location = new System.Drawing.Point(137, 172);
             this.txtmin.Name = "txtmin";
             this.txtmin.Size = new System.Drawing.Size(100, 20);
             this.txtmin.TabIndex = 3;
             // 
             // txtmax
             // 
-            this.txtmax.Location = new System.Drawing.Point(126, 198);
+            this.txtmax.Location = new System.Drawing.Point(137, 198);
             this.txtmax.Name = "txtmax";
             this.txtmax.Size = new System.Drawing.Size(100, 20);
             this.txtmax.TabIndex = 4;
@@ -96,15 +96,15 @@
             this.cmbType.Items.AddRange(new object[] {
             "RtuEmuLib.RegisterTypeModbusHPWord",
             "RtuEmuLib.RegisterTypeModbusCoil"});
-            this.cmbType.Location = new System.Drawing.Point(126, 97);
+            this.cmbType.Location = new System.Drawing.Point(137, 92);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(121, 21);
+            this.cmbType.Size = new System.Drawing.Size(266, 21);
             this.cmbType.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 23);
+            this.label1.Location = new System.Drawing.Point(43, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 7;
@@ -113,7 +113,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 64);
+            this.label2.Location = new System.Drawing.Point(43, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 8;
@@ -162,10 +162,11 @@
             this.cmbrandomize.Items.AddRange(new object[] {
             "Yes",
             "No"});
-            this.cmbrandomize.Location = new System.Drawing.Point(126, 148);
+            this.cmbrandomize.Location = new System.Drawing.Point(137, 148);
             this.cmbrandomize.Name = "cmbrandomize";
             this.cmbrandomize.Size = new System.Drawing.Size(121, 21);
             this.cmbrandomize.TabIndex = 13;
+            this.cmbrandomize.SelectedIndexChanged += new System.EventHandler(this.cmbrandomize_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -180,7 +181,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(463, 261);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cmbrandomize);
             this.Controls.Add(this.label6);

@@ -23,9 +23,15 @@ namespace UpdateRTUEMuXMLFiles
         public frmaddreg(string fname)
         {
             InitializeComponent();
-            cmbrandomize.DropDownStyle = ComboBoxStyle.DropDown;
-            cmbrandomize.DropDownStyle = ComboBoxStyle.DropDown;
+            cmbType.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbType.SelectedItem = "RtuEmuLib.RegisterTypeModbusHPWord";
+            cmbrandomize.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbrandomize.SelectedItem = "No";
             holder = fname;
+            txtmax.Visible = false;
+            txtmin.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
 
         }
 
@@ -36,7 +42,15 @@ namespace UpdateRTUEMuXMLFiles
 
         private void button1_Click(object sender, EventArgs e)
         {
-            addregsiternode(holder, txtdesc.Text, txtadd.Text, cmbrandomize.SelectedItem.ToString(), txtval.Text, cmbrandomize.SelectedItem.ToString(), txtmin.Text, txtmax.Text);
+            if (txtdesc.Text.Length > 0 && txtadd.Text.Length > 0 && txtval.Text.Length > 0)
+            {
+                addregsiternode(holder, txtdesc.Text, txtadd.Text, cmbType.SelectedItem.ToString(), txtval.Text, cmbrandomize.SelectedItem.ToString(), txtmin.Text, txtmax.Text);
+            }
+            else
+            {
+                MessageBox.Show("Description, Address , Type , Value .. Cannot be left Blank", "Add Register", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             this.Close();
         }
 
@@ -51,28 +65,29 @@ namespace UpdateRTUEMuXMLFiles
           //  XmlNode rootNode = rootNodes[0];
             XmlNode root = xmlDoc.DocumentElement;
             XmlNode registerNode = xmlDoc.CreateElement("Register");
+
             XmlAttribute descattribute = xmlDoc.CreateAttribute("Description");
             descattribute.Value = regdescription;
             registerNode.Attributes.Append(descattribute);
             XmlAttribute addrattribute = xmlDoc.CreateAttribute("Address");
-            descattribute.Value = regaddress;
+            addrattribute.Value = regaddress;
             registerNode.Attributes.Append(addrattribute);
             XmlAttribute dtypeattribute = xmlDoc.CreateAttribute("Type");
-            descattribute.Value = rtype;
+            dtypeattribute.Value = rtype;
             registerNode.Attributes.Append(dtypeattribute);
             XmlAttribute valattibute = xmlDoc.CreateAttribute("Value");
-            descattribute.Value = val;
+            valattibute.Value = val;
             registerNode.Attributes.Append(valattibute);
             if (ranval.ToLower() == "yes")
             {
                 XmlAttribute mincattribute = xmlDoc.CreateAttribute("Min");
-                descattribute.Value = min;
+                mincattribute.Value = min;
                 registerNode.Attributes.Append(mincattribute);
                 XmlAttribute maxcattribute = xmlDoc.CreateAttribute("Max");
-                descattribute.Value = max;
+                maxcattribute.Value = max;
                 registerNode.Attributes.Append(maxcattribute);
                 XmlAttribute randzcattribute = xmlDoc.CreateAttribute("Randomize");
-                descattribute.Value = ranval;
+                randzcattribute.Value = ranval;
                 registerNode.Attributes.Append(randzcattribute);
             }
             root.AppendChild(registerNode);
@@ -83,5 +98,23 @@ namespace UpdateRTUEMuXMLFiles
             
         }
         #endregion
+
+        private void cmbrandomize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbrandomize.SelectedItem.ToString().ToLower() == "yes")
+            {
+                txtmax.Visible = true;
+                txtmin.Visible = true;
+                label5.Visible = true;
+                label6.Visible = true;
+            }
+            else
+            {
+                txtmax.Visible = false;
+                txtmin.Visible = false;
+                label5.Visible = false;
+                label6.Visible = false;
+            }
+        }
     }
 }

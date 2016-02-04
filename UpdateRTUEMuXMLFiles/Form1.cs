@@ -34,6 +34,7 @@ namespace UpdateRTUEMuXMLFiles
             textBox5.Visible = false;
             label6.Visible = false;
             label7.Visible = false;
+            button3.Enabled = false;
         }
         #endregion
 
@@ -71,6 +72,7 @@ namespace UpdateRTUEMuXMLFiles
                 label5.BackColor = Color.White;
                 label5.Text = "File Opened: " + flname;
                 this.fname = flname;
+                button3.Enabled = true;
             }
         }
         #endregion
@@ -177,6 +179,25 @@ namespace UpdateRTUEMuXMLFiles
                         return;
                     }
                     attributesvalues = xn.Attributes[attrname].InnerText;
+                    string othatt = "";
+                    if (comboBox3.SelectedItem.ToString() == "Other(Please Specify)")
+                    {
+                        textBox7.Visible = true;
+                        if (textBox7.Text.Length > 0)
+                        {
+                             othatt = textBox7.Text;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Enter Attribute Name to Look for", "XML updater", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            resetlable();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        othatt = comboBox3.SelectedItem.ToString();
+                    }
 
                     if ((textBox3.Text.Length > 0) == false)
                     {
@@ -194,9 +215,9 @@ namespace UpdateRTUEMuXMLFiles
                     if (attributesvalues == textBox3.Text)
                     {
                         updatedone = true;
-                        if (isatrributePresent(xn,comboBox3.SelectedItem.ToString()))
+                        if (isatrributePresent(xn,othatt))
                         {
-                        xn.Attributes[comboBox3.SelectedItem.ToString()].Value = textBox2.Text;
+                        xn.Attributes[othatt].Value = textBox2.Text;
                         }
                         else
                         {
@@ -518,6 +539,18 @@ namespace UpdateRTUEMuXMLFiles
         {
             frmaddreg rg = new frmaddreg(fname);
             rg.Show();
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox3.SelectedItem.ToString() == "Other(Please Specify)")
+            {
+                textBox7.Visible = true;
+            }
+            else
+            {
+                textBox7.Visible = false;
+            }
         }
     }
 }
